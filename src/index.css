@@ -39,7 +39,7 @@ body {
 
 @font-face {
   font-family: 'Futura';
-  src: url('./assets/futuramediumbt.ttf') format('truetype');
+  src: url('./assets/FuturaBookfont.woff2') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -48,4 +48,16 @@ body {
 @theme {
   --font-rhode: 'Rhode', sans-serif;
   --font-futura: 'Futura', sans-serif;
+}
+
+.font-futura {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+  text-rendering: optimizeLegibility;
+}
+
+.font-futura {
+  font-synthesis: none;
+  -webkit-text-stroke: 0;
 }
