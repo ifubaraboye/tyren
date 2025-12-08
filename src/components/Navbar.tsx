@@ -1,7 +1,9 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function TyrenHeader() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   return (
     <>
       <header
@@ -14,7 +16,7 @@ export default function TyrenHeader() {
       >
         {/* Main Content Container */}
         <div className="w-full max-w-[1400px] px-6 md:px-12 flex flex-col items-center justify-center z-10">
-          
+
           {/* 1. Top Logo - Increased mb to move it higher up */}
           <div className="mb-12 md:mb-16">
             <img
@@ -27,11 +29,11 @@ export default function TyrenHeader() {
           {/* 2. Middle Row: ABOUT - TYREN - LENS */}
           {/* Changed items-center to items-start for top alignment */}
           <div className="w-full flex items-start justify-between">
-            
+
             {/* Left Link */}
             <div className="hidden md:block w-32 text-left pt-2 md:pt-4">
-              <Link 
-                to="/about" 
+              <Link
+                to="/about"
                 className="text-[#efe9db] text-xs md:text-sm tracking-[0.2em] font-medium hover:opacity-70 transition-opacity"
               >
                 ABOUT
@@ -51,8 +53,8 @@ export default function TyrenHeader() {
 
             {/* Right Link */}
             <div className="hidden md:block w-32 text-right pt-2 md:pt-4">
-              <Link 
-                to="/lens" 
+              <Link
+                to="/lens"
                 className="text-[#efe9db] text-xs md:text-sm tracking-[0.2em] font-medium hover:opacity-70 transition-opacity"
               >
                 LENS
@@ -60,10 +62,48 @@ export default function TyrenHeader() {
             </div>
           </div>
 
-          {/* Mobile Links (Visible only on small screens below the text) */}
-          <div className="flex w-full justify-between md:hidden mt-8 px-4">
-             <Link to="/about" className="text-[#efe9db] text-xs tracking-widest">ABOUT</Link>
-             <Link to="/lens" className="text-[#efe9db] text-xs tracking-widest">LENS</Link>
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden absolute top-8 right-6 z-50 text-[#efe9db]"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M3 12h18M3 6h18M3 18h18" />
+              </svg>
+            )}
+          </button>
+
+          {/* Mobile Menu Overlay */}
+          <div
+            className={`fixed inset-0 z-40 bg-[#103926] flex flex-col items-center justify-center space-y-8 md:hidden transition-all duration-500 ease-in-out ${isMenuOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-4"
+              }`}
+          >
+            <Link
+              to="/"
+              className="text-[#efe9db] text-xl tracking-[0.2em] font-medium hover:opacity-70 transition-opacity"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              HOME
+            </Link>
+            <Link
+              to="/about"
+              className="text-[#efe9db] text-xl tracking-[0.2em] font-medium hover:opacity-70 transition-opacity"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              ABOUT
+            </Link>
+            <Link
+              to="/lens"
+              className="text-[#efe9db] text-xl tracking-[0.2em] font-medium hover:opacity-70 transition-opacity"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              LENS
+            </Link>
           </div>
 
           {/* 3. Tagline */}
